@@ -29,27 +29,3 @@ for each row in the input, create 2 lists and find their intersection
 then for each common letter, map it to a "priority"
 finally, sum the priorties per input row 
 """
-
-"""
-  for idx, element in enumerate(array):
-    if element == 'A X':
-      array[idx] = 3
-    if element == 'A Y':
-      array[idx] = 4
-    if element == 'A Z':
-      array[idx] = 8
-    if element == 'B X':
-      array[idx] = 1
-    if element == 'B Y':
-      array[idx] = 5
-    if element == 'B Z':
-      array[idx] = 9
-    if element == 'C X':
-      array[idx] = 2
-    if element == 'C Y':
-      array[idx] = 6
-    if element == 'C Z':
-      array[idx] = 7
-  print(array)
-  print("Total score following the strategy guide is " + str(sum(array)))
-  """
