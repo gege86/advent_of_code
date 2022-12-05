@@ -20,6 +20,7 @@ with open('input.txt') as f:
       * are changeable
       * allow duplicate values
       * can have various data types (stuff can be nested)
+    * you can pop/append elements from/to it (treat it like a "stack")
     * can be converted into a set
   * set
     * can be used to do set-like comparisons, like
