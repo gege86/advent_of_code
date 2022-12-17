@@ -25,3 +25,7 @@ with open('input.txt') as f:
   * set
     * can be used to do set-like comparisons, like
     * check if a set contains another
+* TO DO list comprehension (add example)
+* TO DO dictionary comprehension (add example)
+* TO DO add recursive function types
+* TO DO for else
