@@ -2,23 +2,20 @@
 
 ### plan ###
 # store sensor positions and their distance to the closest beacon
-# print it out
-# no clue what next
-# 
-#
+# create a set with all possible distress signal positions
+# remove from that set everything we can
+# at the end there should only be one possible location
 
-from pprint import pprint
-from math import sqrt
 
 # https://www.statology.org/manhattan-distance-python/
 def manhattan(a, b):
     return sum(abs(val1-val2) for val1, val2 in zip(a,b))
 
-where_beacon_cant_be = set()
+distress_possible_locations = set()
 beacon_set = set()
 sensor_set = set()
 input_lst = []
-
+tmp_list = []
 
 # read input
 with open('day_15_input.txt') as f:
@@ -39,31 +36,26 @@ for input_row in input_rows:
   beacon_set.add((bx,by))
   sensor_set.add((x,y))
 
-print("input is parsed")
+print("Input is parsed")
 
+# fill set of possible distress signal locations
+maxv = 4000000
+for i in range(0, maxv + 1):
+  for j in range(0, maxv + 1):
+    distress_possible_locations.add((i, j))
+print("Possible distress signal locations stored.")
+
+# remove locations where we know that the distress signal can't be
 for sensor in input_lst:
   x = sensor[0]
   y = sensor[1]
   m = sensor[4]
-  from_x = x - m if x - m >= 0 else 0
-  to_x = x + m + 1 if x + m + 1 <= 4000000 else 4000000
-  from_y = y - m if y - m >= 0 else 0
-  to_y = y + m + 1 if y + m + 1 <= 4000000 else 4000000
   print("Processing a sensor.")
-  for i in range(from_x, to_x):
-    for j in range(from_y, to_y):
-      if m >= manhattan((x,y),(i,j)):
-        if (i,j) not in beacon_set and (i,j) not in sensor_set:
-          where_beacon_cant_be.add((i,j))
-#          print(len(where_beacon_cant_be))
+  for i in range(0, m + 1):
+    distress_possible_locations.discard((x + i, y + i))
+    distress_possible_locations.discard((x + i, y - i))
+    distress_possible_locations.discard((x - i, y + i))
+    distress_possible_locations.discard((x - i, y - i))
 
-print("know we know where a beacon can't be")
-
-#print(where_beacon_cant_be)
-#y_10_count = 0
-#coords_tmp = []
-#for coord in where_beacon_cant_be:
-#  if coord[1] == 2000000:
-#    y_10_count+=1
-#print(y_10_count)
-
+print("Now only one possible distress signal location should remain.")
+print(distress_possible_locations)
