@@ -3,9 +3,10 @@
 ### plan ###
 # store sensor positions and their distance to the closest beacon
 # print it out
-# no clue what next
+# ???
+# profit
 # 
-#
+# Note: this works for task 1, but is very slow...
 
 from pprint import pprint
 from math import sqrt
@@ -45,26 +46,14 @@ for sensor in input_lst:
   x = sensor[0]
   y = sensor[1]
   m = sensor[4]
-  from_x = x - m if x - m >= 0 else 0
-  to_x = x + m + 1 if x + m + 1 <= 4000000 else 4000000
-  from_y = y - m if y - m >= 0 else 0
-  to_y = y + m + 1 if y + m + 1 <= 4000000 else 4000000
   print("Processing a sensor.")
   for i in range(x - m, x + m + 1):
-    for j in range(y - m, y + m + 1):
+#    for j in range(y - m, y + m + 1):
     j = 2000000
-      if m >= manhattan((x,y),(i,j)):
-        if (i,j) not in beacon_set and (i,j) not in sensor_set:
-          where_beacon_cant_be.add((i,j))
-  #          print(len(where_beacon_cant_be))
+    if m >= manhattan((x,y),(i,j)):
+      if (i,j) not in beacon_set and (i,j) not in sensor_set:
+        where_beacon_cant_be.add((i,j))
 
-print("know we know where a beacon can't be")
-
-#print(where_beacon_cant_be)
-y_10_count = 0
-coords_tmp = []
-for coord in where_beacon_cant_be:
-  if coord[1] == 2000000:
-    y_10_count+=1
-print(y_10_count)
+print("Now we know where a beacon can't be.")
+print(len(where_beacon_cant_be))
 
